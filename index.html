@@ -13,23 +13,6 @@
       const raycaster = new THREE.Raycaster();
       const mouse = new THREE.Vector2();
 
-      // Object
-      let geometry = new THREE.BoxGeometry(1, 1, 1);
-      let material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
-
-      // scene.add(mesh);
-
-      let meshX = -10;
-      let mesh;
-      for (let i = 0; i < 100; i++) {
-        mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = (Math.random() - 0.5) * 15;
-        mesh.position.y = (Math.random() - 0.5) * 15;
-        mesh.position.z = (Math.random() - 1) * 10;
-        scene.add(mesh);
-        meshX += 1;
-      }
-
       // Lights
       const light1 = new THREE.PointLight(0xffffff, 1, 1000);
       light1.position.set(0, 0, 0);
