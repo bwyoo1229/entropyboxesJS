@@ -8,9 +8,7 @@
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
-    <srcipt
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"
-    ></srcipt>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script>
       let scene = new THREE.Scene();
 
@@ -53,13 +51,19 @@
         // Render when screen is refreshd
         requestAnimationFrame(render);
 
-        mesh.rotation.x += 0.05;
-        mesh.rotation.y += 0.01;
-
         renderer.render(scene, camera);
       }
 
       render();
+
+      window.tl = new TimelineMax().delay(0.3);
+      window.tl.to(mesh.scale, 1, { x: 2, ease: Expo.easeOut });
+      window.tl.to(mesh.scale, 0.5, { x: 0.5, ease: Expo.easeOut });
+      window.tl.to(mesh.position, 0.5, { x: 2, ease: Expo.easeOut });
+      window.tl.to(mesh.rotation, 0.5, {
+        y: Math.PI * 0.5,
+        ease: Expo.easeOut,
+      });
     </script>
   </body>
 </html>
