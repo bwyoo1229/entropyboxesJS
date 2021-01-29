@@ -13,19 +13,6 @@
       const raycaster = new THREE.Raycaster();
       const mouse = new THREE.Vector2();
 
-      // Lights
-      const light1 = new THREE.PointLight(0xffffff, 1, 1000);
-      light1.position.set(0, 0, 0);
-      scene.add(light1);
-
-      const light2 = new THREE.PointLight(0xffffff, 1, 1000);
-      light2.position.set(0, 0, 25);
-      scene.add(light2);
-
-      const light3 = new THREE.PointLight(0xffffff, 1, 1000);
-      light3.position.set(0, 0, 50);
-      scene.add(light3);
-
       function render() {
         // Render when screen is refreshd
         requestAnimationFrame(render);

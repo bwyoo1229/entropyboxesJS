@@ -8,10 +8,6 @@ export default class Scene {
       1000
     );
     this.renderer = new THREE.WebGLRenderer({ antialisas: true });
-
-    this.setCamera();
-    this.setRenderer();
-    this.setResponsiveWindow();
   }
 
   setCamera() {
