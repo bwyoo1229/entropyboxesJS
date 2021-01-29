@@ -38,11 +38,21 @@
       const mouse = new THREE.Vector2();
 
       // Object
-      const geometry = new THREE.BoxGeometry(1, 1, 1);
-      const material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
-      const mesh = new THREE.Mesh(geometry, material);
+      let geometry = new THREE.BoxGeometry(1, 1, 1);
+      let material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
 
-      scene.add(mesh);
+      // scene.add(mesh);
+
+      let meshX = -10;
+      let mesh;
+      for (let i = 0; i < 15; i++) {
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random() - 0.5) * 10;
+        mesh.position.y = (Math.random() - 0.5) * 10;
+        mesh.position.z = (Math.random() - 0.5) * 10;
+        scene.add(mesh);
+        meshX += 1;
+      }
 
       // Light
       const light = new THREE.PointLight(0xffffff, 1, 500);
