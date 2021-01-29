@@ -4,6 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: serif;
 }
 
 canvas {
@@ -18,4 +19,23 @@ h1 {
   border: 10px solid black;
   margin: 0;
   padding: 0 25px;
+}
+
+p {
+  position: absolute;
+  bottom: 65px;
+  left: 45px;
+  font-weight: bold;
+}
+
+audio {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 250px;
+}
+
+audio:focus {
+  outline: none;
 }
