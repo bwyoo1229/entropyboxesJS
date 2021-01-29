@@ -69,12 +69,12 @@ export default class App {
     let tl = new TimelineMax().delay(0.1);
 
     for (let i = 0; i < intersects.length; i++) {
-      tl.to(intersects[i].object.position, 0.3, {
-        x: intersects[i].object.position.x + (Math.random() - 0.5) * 5,
+      tl.to(intersects[i].object.rotation, 0.3, {
+        y: intersects[i].object.rotation.y + (Math.random() - 0.5) * 30,
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
-        y: intersects[i].object.position.y + (Math.random() - 0.5) * 5,
+        x: intersects[i].object.position.x + (Math.random() - 0.5) * 5,
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
@@ -82,7 +82,11 @@ export default class App {
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
-        x: intersects[i].object.position.x + (Math.random() - 0.5) * 5,
+        y: intersects[i].object.position.y + (Math.random() - 0.5) * 5,
+        ease: Bounce.easeOut,
+      });
+      tl.to(intersects[i].object.rotation, 0.3, {
+        x: intersects[i].object.rotation.x + (Math.random() - 0.5) * 30,
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
@@ -90,11 +94,11 @@ export default class App {
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
-        z: intersects[i].object.position.z + (Math.random() - 0.5) * 5,
+        x: intersects[i].object.position.x + (Math.random() - 0.5) * 5,
         ease: Bounce.easeOut,
       });
       tl.to(intersects[i].object.position, 0.3, {
-        x: intersects[i].object.position.x + (Math.random() - 0.5) * 5,
+        z: intersects[i].object.position.z + (Math.random() - 0.5) * 5,
         ease: Bounce.easeOut,
       });
     }
