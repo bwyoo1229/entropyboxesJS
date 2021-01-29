@@ -10,9 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
     <script>
-      let scene = new THREE.Scene();
+      const scene = new THREE.Scene();
 
-      let camera = new THREE.PerspectiveCamera(
+      const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
         0.1,
@@ -20,7 +20,7 @@
       );
       camera.position.z = 5;
 
-      let renderer = new THREE.WebGLRenderer({ antialisas: true });
+      const renderer = new THREE.WebGLRenderer({ antialisas: true });
       renderer.setClearColor('#e5e5e5');
       renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -34,15 +34,18 @@
         camera.updateProjectionMatrix();
       });
 
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
       // Object
-      let geometry = new THREE.BoxGeometry(1, 1, 1);
-      let material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
-      let mesh = new THREE.Mesh(geometry, material);
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
+      const mesh = new THREE.Mesh(geometry, material);
 
       scene.add(mesh);
 
       // Light
-      let light = new THREE.PointLight(0xffffff, 1, 500);
+      const light = new THREE.PointLight(0xffffff, 1, 500);
       light.position.set(10, 0, 25);
 
       scene.add(light);
@@ -54,16 +57,38 @@
         renderer.render(scene, camera);
       }
 
+      function onMouseMove(event) {
+        event.preventDefault();
+
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+
+        const intersects = raycaster.intersectObjects(scene.children, true);
+
+        if (intersects[0]) {
+          const tl = new TimelineMax().delay(0.3);
+
+          tl.to(intersects[0].object.scale, 1, { x: 2, ease: Expo.easeOut });
+          tl.to(intersects[0].object.scale, 0.5, {
+            x: 0.5,
+            ease: Expo.easeOut,
+          });
+          tl.to(intersects[0].object.position, 0.5, {
+            x: 2,
+            ease: Expo.easeOut,
+          });
+          tl.to(intersects[0].object.rotation, 0.5, {
+            y: Math.PI * 0.5,
+            ease: Expo.easeOut,
+          });
+        }
+      }
+
       render();
 
-      window.tl = new TimelineMax().delay(0.3);
-      window.tl.to(mesh.scale, 1, { x: 2, ease: Expo.easeOut });
-      window.tl.to(mesh.scale, 0.5, { x: 0.5, ease: Expo.easeOut });
-      window.tl.to(mesh.position, 0.5, { x: 2, ease: Expo.easeOut });
-      window.tl.to(mesh.rotation, 0.5, {
-        y: Math.PI * 0.5,
-        ease: Expo.easeOut,
-      });
+      window.addEventListener('mousemove', onMouseMove);
     </script>
   </body>
 </html>
