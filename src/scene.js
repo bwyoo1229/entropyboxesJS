@@ -1,26 +1,26 @@
 export default class Scene {
   constructor() {
-    this.scene = new Three.Scene();
+    this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    this.renderer = new THREE.WebGLRenderer({ antialisas: true });
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
   }
 
-  setCamera() {
-    this.camera.position.z = 5;
+  setCamera(x = 0, y = 0, z = 0) {
+    this.camera.position.set = (x, y, z);
   }
 
-  setRenderer() {
-    this.renderer.setClearColor('#e5e5e5');
+  setRenderer(color) {
+    this.renderer.setClearColor(color);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    document.body.appendChild(this.renderer.domElement);
   }
 
-  setResposiveWindow() {
+  setResponsiveWindow() {
     this.handleWindowResize();
   }
 
