@@ -3,10 +3,10 @@ export default class Raycaster {
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
-    this.onMouseMove = this.onMouseMove.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
   }
 
-  onMouseMove(event) {
+  handleMouseMove(event) {
     event.preventDefault();
 
     this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
