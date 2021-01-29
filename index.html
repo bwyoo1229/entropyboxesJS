@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>THREEJS - CUBES</title>
+    <title>THREEJS - BOX</title>
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
@@ -12,9 +12,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"
     ></srcipt>
     <script>
-      const scene = new THREE.Scene();
+      let scene = new THREE.Scene();
 
-      const camera = new THREE.PerspectiveCamera(
+      let camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
         0.1,
@@ -22,7 +22,7 @@
       );
       camera.position.z = 5;
 
-      const renderer = new THREE.WebGLRenderer();
+      let renderer = new THREE.WebGLRenderer({ antialisas: true });
       renderer.setClearColor('#e5e5e5');
       renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -37,17 +37,26 @@
       });
 
       // Object
-      const geometry = new THREE.SphereGeometry(1, 10, 10);
-      const material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
-      const mesh = new THREE.Mesh(geometry, material);
+      let geometry = new THREE.BoxGeometry(1, 1, 1);
+      let material = new THREE.MeshLambertMaterial({ color: 0xffcc00 });
+      let mesh = new THREE.Mesh(geometry, material);
+
+      mesh.position.x = 2;
       scene.add(mesh);
 
       // Light
-      const light = new THREE.PointLight(0xffffff, 1, 500);
+      let light = new THREE.PointLight(0xffffff, 1, 500);
       light.position.set(10, 0, 25);
+
       scene.add(light);
 
-      renderer.render(scene, camera);
+      function render() {
+        // Render when screen is refreshd
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+
+      render();
     </script>
   </body>
 </html>
